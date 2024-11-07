@@ -1,26 +1,29 @@
 import streamlit as st
 import joblib
 import numpy as np
-import pandas as pd
+
+# Define feature names and descriptions
+feature_names = ['Mean Radius', 'Mean Texture', 'Mean Perimeter', 'Mean Area', 'Mean Smoothness',
+                 'Mean Compactness', 'Mean Concavity', 'Mean Concave Points', 'Mean Symmetry', 'Mean Fractal Dimension',
+                 'SE Radius', 'SE Texture', 'SE Perimeter', 'SE Area', 'SE Smoothness', 'SE Compactness', 'SE Concavity',
+                 'SE Concave Points', 'SE Symmetry', 'SE Fractal Dimension', 'Worst Radius', 'Worst Texture', 'Worst Perimeter',
+                 'Worst Area', 'Worst Smoothness', 'Worst Compactness', 'Worst Concavity', 'Worst Concave Points', 'Worst Symmetry',
+                 'Worst Fractal Dimension']
 
 def main():
     st.title('Breast Cancer Prediction App')
     st.write("Enter the values for the features to get a prediction.")
 
-    # Define input fields for user to enter all 30 feature values
+    # Define input fields for user to enter feature values with proper labels
     features = []
-    for i in range(1, 31):
-        feature_value = st.number_input(f'Feature {i} (Feature {i} Description)', min_value=0.0)
+    for feature in feature_names:
+        feature_value = st.number_input(f'{feature}', min_value=0.0)
         features.append(feature_value)
 
     # Handle cases where input features may need categorical encoding
     def preprocess_input(features):
         model = joblib.load('model.pkl')
         scaler = joblib.load('scaler.pkl')
-
-        # Ensure that categorical columns are handled correctly
-        # If using categorical features, convert to appropriate format
-        # Example: encoding unknown categories with 'unknown' handling
 
         # Scale the features
         features_scaled = scaler.transform(np.array(features).reshape(1, -1))
