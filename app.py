@@ -7,12 +7,12 @@ def main():
     st.title('Breast Cancer Prediction App')
     st.write("Enter the values for the features to get a prediction.")
 
-    # Define input fields for user to enter feature values
-    feature_1 = st.number_input('Feature 1 (Mean Radius)', min_value=0.0)
-    feature_2 = st.number_input('Feature 2 (Mean Texture)', min_value=0.0)
-    feature_3 = st.number_input('Feature 3 (Mean Perimeter)', min_value=0.0)
-    feature_4 = st.number_input('Feature 4 (Mean Area)', min_value=0.0)
-    # Add more feature inputs as needed
+    # Define input fields for user to enter feature values with specified ranges
+    feature_1 = st.number_input('Feature 1 (Mean Radius)', min_value=0.0, max_value=50.0, value=14.0)
+    feature_2 = st.number_input('Feature 2 (Mean Texture)', min_value=0.0, max_value=50.0, value=19.0)
+    feature_3 = st.number_input('Feature 3 (Mean Perimeter)', min_value=0.0, max_value=200.0, value=90.0)
+    feature_4 = st.number_input('Feature 4 (Mean Area)', min_value=0.0, max_value=2500.0, value=600.0)
+    # Add more feature inputs with appropriate ranges as needed
 
     # Collect input values into a list
     features = [feature_1, feature_2, feature_3, feature_4]  # Extend this to all necessary features
